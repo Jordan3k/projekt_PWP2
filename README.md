@@ -21,21 +21,23 @@ The project can be launched in two ways:
 - Docker **24+**
 - Docker Compose
 
+## Repository structure
 
-Repository structure
+```text
 projekt_PWP2/
 │
-├── PythonProject_local/      # local run
-│   ├── app/                  # Flask application code
-│   ├── requirements.txt      # Python dependencies
-│   └── run.py                # main entry point
+├── PythonProject_local/          # local run
+│   ├── app/                      # Flask application code
+│   ├── requirements.txt          # Python dependencies
+│   └── run.py                    # main entry point
 │
-├── PythonProject_docker/     # Docker run
-│   ├── Dockerfile            # app image
-│   ├── docker-compose.yml    # Compose configuration
+├── PythonProject_docker/         # Docker run
+│   ├── Dockerfile                # app image
+│   ├── docker-compose.yml        # Compose configuration
 │   └── ...
 │
-└── README.md                 # project instructions
+└── README.md                     # project instructions
+
 
 
 
