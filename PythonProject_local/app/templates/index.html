@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="card">
+<h2>Oblicz</h2>
+<form method="post" action="{{ url_for('app.index') }}" class="calc-form">
+<input
+type="text"
+name="expression"
+placeholder="np. (2+3)*4/5"
+value="{{ expression or '' }}"
+required
+/>
+<button type="submit">Policz</button>
+</form>
+
+
+{% if result is not none %}
+<div class="result">
+<span>Wynik:</span>
+<strong id="result-value">{{ result }}</strong>
+</div>
+
+
+<form method="post" action="{{ url_for('app.save') }}">
+<input type="hidden" name="expression" value="{{ expression }}" />
+<input type="hidden" name="result" value="{{ result }}" />
+<button type="submit">Zapisz wynik</button>
+</form>
+{% endif %}
+</section>
+{% endblock %}

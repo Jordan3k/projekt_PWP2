@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Prosty Kalkulator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+</head>
+<body>
+    <header>
+        <h1>🔢 Prosty Kalkulator (Flask + PostgreSQL)</h1>
+        <nav>
+        <a href="{{ url_for('app.index') }}">Kalkulator</a>
+        <a href="{{ url_for('app.history') }}">Historia</a>
+        </nav>
+    </header>
+
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <ul class="flash">
+    {% for category, message in messages %}
+    <li class="{{ category }}">{{ message }}</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+
+
+    <main>
+    {% block content %}{% endblock %}
+    </main>
+
+
+    <footer>
+        <small>© 2025 Kalkulator – Projekt zaliczeniowy</small>
+    </footer>
+</body>
+</html>

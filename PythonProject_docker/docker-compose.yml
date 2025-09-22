@@ -1,0 +1,28 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: flaskToDo
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: WertyCV78!
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  web:
+    build: .
+    env_file:
+      - .env
+    environment:
+      # Fallback if .env is missing
+      - DATABASE_URL=postgresql+psycopg://postgres:WertyCV78!@localhost:5432/flaskToDo
+      - SECRET_KEY=${SECRET_KEY:-dev-secret-change-me}
+      - FLASK_ENV=production
+    depends_on:
+      - db
+    ports:
+      - "5000:5000"
+    command: gunicorn -c gunicorn.conf.py run:app
+volumes:
+  db_data:

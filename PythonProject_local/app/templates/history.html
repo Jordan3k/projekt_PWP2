@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="card">
+<h2>Historia zapisanych wyników</h2>
+{% if not records %}
+<p>Brak zapisanych wyników.</p>
+{% else %}
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Wyrażenie</th>
+<th>Wynik</th>
+<th>Utworzono</th>
+</tr>
+</thead>
+<tbody>
+{% for r in records %}
+<tr>
+<td>{{ r.id }}</td>
+<td>{{ r.expression }}</td>
+<td>{{ r.result }}</td>
+<td>{{ r.created_at.strftime('%Y-%m-%d %H:%M:%S') }} UTC</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+<form method="post" action="{{ url_for('app.clear_history') }}">
+<button type="submit" class="danger">Wyczyść historię</button>
+</form>
+{% endif %}
+</section>
+{% endblock %}
